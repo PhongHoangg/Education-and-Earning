@@ -1,0 +1,326 @@
+---
+title: "Education and Earnings"
+author: "Phong Hoang"
+date: "11/9/2020"
+output: 
+  html_document:
+    code_folding: hide
+
+---
+<style type="text/css">
+
+h1.title {
+  font-size: 48px;
+  color: DarkRed;
+  text-align: center;
+}
+h4.author { 
+    font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkRed;
+  text-align: center;
+}
+h4.date { 
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkBlue;
+  text-align: center;
+}
+</style>
+
+# **Introduction**
+Economics is the key area that I decide to focus on when pursuing a Data Analytics major at Denison University. Economic analysis is a process whereby strengths and weaknesses of an economy are analyzed. A major application of economic analysis is to inform decision-making in education in order to improve efficiency in educational production; that is, producing more desired education outputs and outcomes given educational resources. Analytically, educational efficiency can be distinguished as internal efficiency and external efficiency. Internal efficiency relates educational outputs to educational inputs, while external efficiency relates educational outcomes to educational inputs. Analysis of educational efficiency is not confined to economic concerns only since educational outputs and outcomes also pertain to social and political dimensions of national development.
+  
+My research question is: “What factors explain for the difference salary in different field”. After the pandemic Covid-19, millions of American college students heading back to campus this month face a grim reality: A college degree is no guarantee of economic success. But through their choice of major, they can take at least some steps toward boosting their odds.
+  
+The connection between education and earning is “notoriously fraught”, as Ben Casselman mentioned in “The Economic Guide to picking a College Major” that:
+	
+> *“Don’t be pre-med if you aren’t planning to go to medical school; don’t assume that all STEM” — science, technology, engineering and math — majors are the same; and if  you study drama, be prepared to wait tables.”*
+  
+Anthony P. Carnevale, Jeff Strohl, Michelle Melton also demonstrates just how critical the choice of undergraduate major is to a student’s potential earnings in their science report, in particular as:
+
+> *“While everyone who attends college can expect a significant return on their investment, different undergraduate majors lead to markedly different careers— and significantly different wages. At the extreme, the highest earning major earns 314 percent more at the median than the lowest earning major at the median.”*
+	
+Besides the choice of majors, there are many other factors that may influence an individual’s income. I plan to answer my research question by dividing my question into a set of smaller, more manageable questions as follow:
+
+1.	How many categories do the University offer? What are the majors inside that filed? Is there any difference in paying between majors?
+2.	Is there any difference in paying between regions?
+3.	Is there any difference in paying between school type?
+4.	Is there a significant difference between starting salary and mid-career salary?
+5.	How is obtaining a Graduate degree differ from just obtaining a bachelor’s degree among these fields?
+6.	What is the relationship between the number of people studying a category and the starting salary?
+
+	The following lists are the publicly available data set that I will use to address my research question:
+	
++ Focal data: [“College Majors”](https://github.com/fivethirtyeight/data/tree/master/college-majors) by Five Thirty Eight Data Set.
++ Secondary Source: [“Salary increase by Majors”](https://github.com/PhongHoangg/Phong-Hoang---DA-101-Final-Project) by The Wall Street Journal.
++	Secondary Source: [“Salary by Regions”](https://github.com/PhongHoangg/Phong-Hoang---DA-101-Final-Project) by The Wall Street Journal.
++	Secondary Source: [“Salary increase by College Type”](https://github.com/PhongHoangg/Phong-Hoang---DA-101-Final-Project) by The Wall Street Journal.
++	Secondary Source: [“College major and career choice: A retest of Holland's theory”](https://www.sciencedirect.com/science/article/abs/pii/0001879174900335) by Leon J Gross and Eugene L Gaier.
+
+# **Ethical Considerations:**
+When working with this kind of data, we should be mindful of whether the source of these data acknowledge that their information is being disclosed and used for what purpose. We also need to think about whether the data is being taken out of context or not. Therefore, in this analysis, some potential stakeholders are college students or the educational institutions because their personal information is being used publicly. This analysis may commit a breach of privacy of the individuals whose information is used. As for the source, there might be a chance that some sources are not trustworthy. For instance, an university want to increase their attraction to students may exaggerate its numbers. There is also a potential that our analysis takes data out of context and becomes misleading. As a result, our analysis may not accurately represent what’s actually happening.
+
+# **Data Explanation and Exploration:**
+My focal data is the “College Majors” by Five Thirty Eight Data Set. This data set was collected by American Community Survey. The American Community Survey (ACS) is a demographics survey program conducted by the U.S. Census Bureau and its data used by many public-sector, private-sector, and not-for-profit stakeholders to allocate funding, track shifting demographics, plan for emergencies, and learn about local communities. The Five Thirty Eight take the data from 2010-2012 Public Use Microdata Series Sections and uses this to understand how big a financial difference choice of major can make. The key of this data is that the data provide me with many useful information such as the majors, the number of people purchasing bachelor’s degree, the number in each major, median salary of each major. I will discuss the variable that I choose to examine later. The sample sizes for the “all-ages.csv” file is all the college students that participate in the survey, while the sample size for the “recent-grads.csv” is the students with younger than 28 and for the “grad-students.csv” is students older than 25. Base on the sample size and the reputation of American Community Survey, I think my data is accurate. 
+
+My secondary source data was collected by PayScale Inc. The Wall Street Journal use this data set to compare the salary between different majors in the country. In these reports, the authors identify different majors, and provide a median of starting salary, a median of mid-career salary, some percentile values of the mid-career, and percent change from Starting to Mid-Career Salary for each major, helping me to navigate my sub-questions.  
+
+I think the choice of majors do contribute to the difference between fields’ salary. A person who study Data Analytics may end up having a better-paid job than a person pursues his or her dream in Library Science. That is the reason I have to look for the overall categories, and majors that the major that University offer in each category. The second factor I am considering is the school type. Where people go to college can make a big difference in starting pay, and that difference is largely sustained into midcareer. I want to use my data to clarify the assumption that whether going to an Ivy Leagues School will have a higher payment than a State School or other kind of school. Do the high tuition of these elite schools is worth it? The next variable I will examine is regions. I think regions is an important factor that decide the difference in payment as the schools locate in the economic power cities usually go with the advantages of having an internship in a bigger and more famous company. Let take a look at New York City, a center for the best financial, legal, technological, medical and scientific minds in the world, is home to some of the finest educational institutions in the country, such as Columbia University and New York University. I am also curious about the difference between starting salary and the mid-career salary. I think in some areas, after gaining a decent amount of time in the field, the employee will gain the working experience; thus, resulting in a more increasing percentage between the mid-career salary and starting salary than the others. Another variable that I wish to test is whether an individual’s degree is relate to their income. A graduate degree is a big decision — and an expensive one. It may cost an individual two years of working experience compare to the students who have a job after their graduation in undergraduate. The outcomes vary by major. Working as an engineer? Getting a graduate degree will probably lead to a big raise. For a journalist, not so much. Thus, I will examine the difference between having a graduate degree and not in each major, also consider about the relationship between the percentage people choose to obtain a bachelor’s degree and the percentage of increasing salary. The last component I want to study is whether the number of people study in a major relate to the starting salary of that major? There are some assumptions about this topic such as the more people study in an area, the more competitive between individual; thus, leading to a lower starting salary.
+
+# **Method**
+I will visualize and interpret the data I have as details:
+
+1.	I will use a bar chart to count the categories as well as the number of people who study that. After that, I will interpret the graph will some sample questions such as: Which is the most popular category? Less popular category? Which is the most popular major? Less popular? Then I will create a data frame include the major code and the starting salary. Based on the data frame, I will draw a graph to examine some questions such as: Which major has the highest starting salary? The lowest starting salary?
+2.	 I will identify and write a definition for each regions like what is the boundary of each region. Since there are more than two regions and one quantitative dependent variable (salary),  I will use a one-way ANOVA test with null hypothesis (H0) of ANOVA is that there is no difference in the starting salary among group means of regions. Then base of the result, I will interpret and conclude about this variable.  
+3.	I will identify and write a definition for each school type. Then I will draw a box plot for them. Since there are more than two types of college and one quantitative dependent variable (salary),  I will use a one-way ANOVA test with null hypothesis (H0) of ANOVA is that there is no difference in the starting salary among group means of college types. Then base of the result, I will interpret and conclude about this variable. 
+4.	I will visualize my data with a line graph contains two different line, one is representing for the starting salary and one is representing for the mid-career salary. Since there is a categorical independent variable with two levels (starting and mid-career) and one quantitative dependent variable (salary), I will conduct a two-sample t-test with null hypothesis (H0) is that there is no difference between starting salary and mid-career salary. Then base of the result, I will interpret and conclude about this variable.  
+5.	I will visualize my data with a line graph contains two different line, one is representing for the people having a graduate degree and one is representing for the people having only a bachelor’s degree. Since there is a categorical independent variable with two levels (bachelor and graduate) and one quantitative dependent variable (salary), I will conduct a two-sample t-test with null hypothesis (H0) is that there is no difference between the people having a graduate degree and one is representing for the people having only a bachelor’s degree. Then base of the result, I will interpret and conclude about this variable. 
+For the relationship between the percentage of people choosing to obtain a graduate degree and the percentage increasing between graduate degree and bachelor’s degree, I intent to draw a scatter plot for it. Then I will find the best line of fit and the coefficient correlation between two variables and interpret the result. 
+6.	To find the relationship between the number of people studying a category and the starting salary, I intent to draw a scatter plot for it. Then I will find the best line of fit and the coefficient correlation between two variables and interpret the result.
+
+
+# *The summary of finding** 
+
+```{r warning=FALSE, message=FALSE}
+#Loading libraries and data 
+library(tidyverse)
+FocalData <- read.csv("FocalData.csv")
+RegionData <- read.csv("RegionData.csv")
+CollegeTypeData <- read.csv("CollegeTypeData.csv")
+MajorData <- read.csv("MajorData.csv")
+GradData <- read.csv("grad-students.csv")
+```
+
+## The Summary of Major Category
+
+```{r warning=FALSE, message=FALSE}
+Data <- select(FocalData, Major_category, Total)
+NewData <- Data %>% group_by(Major_category) %>% summarise(Number = sum(Total)) 
+PercentageMajor = mutate(NewData, Percentage = 100*Number/sum(Number))
+ggplot(data=PercentageMajor, aes(x=reorder(Major_category, Percentage), y=Percentage)) +
+  geom_bar(stat="identity",fill="steelblue") + coord_flip() +
+  labs(title="The Summary of Major Category",x = "Category",y = "Percentage")+
+  theme(
+  plot.title = element_text(color="Black", size=12, face="bold"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold"))
+```
+
+This is a bar chart representing the major categories as well as the percentage of students who are pursuing them. The x-axis is the percentage of total students, while the y-axis is the list of different categories. From this graph, we can see that Business is the most popular category, while Interdisciplinary is the least popular one.
+
+## Top 10 Most Popular Major and Least Popular Major
+
+```{r warning=FALSE, message=FALSE}
+PercentageofMajor <- select(FocalData, Total, Major_category, Major)
+PercentageofMajor <- PercentageofMajor %>% mutate(PercentageofMajor, Percentage = 100*Total/sum(Total))
+PercentageofMajor = arrange(PercentageofMajor, desc(Percentage))
+knitr::kable(head(PercentageofMajor[2:4],10), "simple", align = "llc", caption = "TOP 10 MOST POPULAR MAJORS")
+PercentageofMajor2 <- PercentageofMajor[with(PercentageofMajor, order(Percentage)), ]
+knitr::kable(head(PercentageofMajor2[2:4],10), "simple", align = "llc", caption = "TOP 10 LEAST POPULAR MAJORS")
+```
+
+These are two tables represent top 10 most popular majors and top 10 least popular majors, respectively. There are 3 columns inside them which indicate the major category, the major as well as the percentage of total students studying them. We can see that Business category has 4 majors in the top 10 most popular majors with	Business Management and Administration has the highest percentage students who enroll. Meanwhile, the major School Student Counseling	is the least popular major with only around 0.006 percentage students attending.
+
+## Median Starting Salary
+
+```{r warning=FALSE, message=FALSE}
+ggplot(data=FocalData, aes(x=Median)) +
+    geom_histogram(color="darkblue", fill="steelblue")+
+    labs(title="                                          Histogram of Median Starting Salary",x ="Salary")+
+  theme(
+  plot.title = element_text(color="Black", size=12, face="bold"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold"))
+```
+The distribution for the frequency of the median starting salary is a right skewed distribution. The x-axis represents the salary, and the y-axis is the frequency of the median. This histogram is a one-tailed distribution, which means that most of the median tend to be around $50000. The statistical values also support for the previous claim, which the Median of the data is 53000 and the Mean is 56816. There are some potential outliers with a high starting salary, which we will explore in the next section.
+
+According to [A Complete Guide to Entry-Level Salaries (Indeed, February 2020)](https://www.indeed.com/career-advice/pay-salary/entry-level-salary), the average salary for entry-level positions in the United States is $40,153 per year. We will test this statement with our data to see whether it is true or not.
+
+```{r warning=FALSE, message=FALSE}
+StartingSalary <- t.test(FocalData$Median , mu = 40153)
+broom::tidy(StartingSalary)
+```
+The null hypothesis: H0: µ = 40153 (the average starting salary is 40153) The alternative hypothesis H1: µ ≠ 1 (the average starting salary is not 40153)
+
+The p-value of the test is less than 2.2e-16, which is less than the significance level alpha = 0.05. It indicates strong evidence against the null hypothesis, as there is less than a 5% probability the null is correct (and the results are random). Therefore, we reject the null hypothesis with the mean of x is 56816.18  and conclude that the the average starting salary is not 40153. In other words, if this sample were drawn at random from a population with a mean of 40153, we could expect to draw a mean with this much of a difference from 40153 in 2.2e-16% of samples.
+
+## Top 5 Most Paid and Least Paid Majors
+
+```{r warning=FALSE, message=FALSE}
+MedianPaid <- select(FocalData, Major, Median)
+MostPaid <- top_n(MedianPaid, 5, Median)
+LeastPaid <- top_n(MedianPaid, -5, Median)
+
+ggplot(data=MostPaid, aes(x=reorder(Major, Median), y=Median)) +
+  geom_bar(stat="identity",fill="steelblue", width = 0.2) + coord_flip() +
+  labs(title="Top 5 Most Paid Major",x = "Major",y = "Salary")+
+  theme(
+  plot.title = element_text(color="Black", size=12, face="bold"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold"))
+
+ggplot(data=LeastPaid, aes(x=reorder(Major, Median), y=Median)) +
+  geom_bar(stat="identity",fill="steelblue", width = 0.2) + coord_flip() +
+  labs(title="Top 5 Least Paid Major",x = "Major",y = "Salary")+
+  theme(
+  plot.title = element_text(color="Black", size=12, face="bold"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold"))
+```
+
+These are two bar charts representing top 5 most paid major and top 5 least paid major, respectively. The y-axis is the major, while the x-axis is the median starting salary corresponding to these majors. According two graphs, the major has the most median salary is Petroleum Engineering, while the least is Neuroscience
+
+# **Statistical Analysis and Interpretation:**
+## Salary by Major Category
+```{r warning=FALSE, message=FALSE}
+ggplot(data=FocalData, aes(x=Median)) +
+    geom_histogram(fill="steelblue")+facet_wrap(~Major_category)+
+    labs(title="                             Median Starting Salary of Different Categories",x ="Salary")+
+  theme(
+  plot.title = element_text(color="Black", size=12, face="bold"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold"))
+```
+
+```{r warning=FALSE, message=FALSE}
+MajorCategoryAnovaTest <- aov(Median ~ Major_category, data = FocalData)
+broom::tidy(MajorCategoryAnovaTest)
+```
+
+These are 16 different histograms represent the median starting salary of different categories. From these graphs, it seems like different majors will make a different starting salary with the Engineer category being the highest starting income. To test this claim, we conduct an ANOVA test with the null hypothesis is there is no significant difference in the median starting salary among categories and the alternative hypothesis is there is significant difference in the median starting salary among categories.
+
+The p-value of the test is 6.0204e-25, which is less than the significance level alpha = 0.05. It indicates strong evidence against the null hypothesis, as there is less than a 5% probability the null is correct (and the results are random). Therefore, we reject the null hypothesis with f statistic is 16.30644  and conclude that  there is significant difference in the median starting salary among major categories.
+
+## Salary by Regions 
+```{r warning=FALSE, message=FALSE}
+ggplot(RegionData, aes(x=Region, y=Starting,)) + 
+  geom_boxplot(outlier.size=2,  fill="steelblue")+
+  labs(title="                  Plot of Median Starting Salary of Each Region",x="Region", y = "Salary")+
+  theme(
+plot.title = element_text(color="Black", size=14, face="bold.italic"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold")
+)
+```
+```{r warning=FALSE, message=FALSE}
+RegionAnovaTest <- aov(Starting ~ Region, data = RegionData)
+broom::tidy(RegionAnovaTest)
+```
+
+This is the boxplot represent the median starting salary among different regions. From this graph, it seems like different regions will make a different starting salary. To test this claim, we conduct an ANOVA test with the null hypothesis is there is no significant difference in the median starting salary among regions and the alternative hypothesis is there is significant difference in the median starting salary among regions
+
+The p-value of the test is 6.593949e-09, which is less than the significance level alpha = 0.05. It indicates strong evidence against the null hypothesis, as there is less than a 5% probability the null is correct (and the results are random). Therefore, we reject the null hypothesis with f statistic is 11.74941  and conclude that  there is significant difference in the median starting salary among regions.
+
+## Salary by College Types
+```{r warning=FALSE, message=FALSE}
+ggplot(CollegeTypeData, aes(x=Type, y=Starting)) + 
+  geom_boxplot(outlier.size=2, fill="steelblue")+
+  labs(title="            Plot of Median Starting Salary of Each College Types",x="College Type", y = "Salary")+
+theme(
+plot.title = element_text(color="Black", size=14, face="bold.italic"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold")
+)
+```
+
+```{r warning=FALSE, message=FALSE}
+CollegeTypeAnovaTest <- aov(Starting ~ Type, data = CollegeTypeData)
+broom::tidy(CollegeTypeAnovaTest)
+```
+This is the boxplot represent the median starting salary among different college types. From this graph, it seems like different college types will make a different starting salary. To test this claim, we conduct an ANOVA test with the null hypothesis is there is no significant difference in the median starting salary among college types and the alternative hypothesis is there is significant difference in the median starting salary among college types.
+
+The p-value of the test is 7.056857e-39, which is less than the significance level alpha = 0.05. It indicates strong evidence against the null hypothesis, as there is less than a 5% probability the null is correct (and the results are random). Therefore, we reject the null hypothesis with f statistic is 66.56144  and conclude that  there is significant difference in the median starting salary college types.
+
+## Starting salary and Mid-career salary by Majors
+```{r warning=FALSE, message=FALSE}
+ggplot(MajorData,aes(x=Number)) +
+  geom_line(
+    aes(y=Starting, color = "Starting Salary"),
+    size = 0.8) +
+  geom_line(
+    aes(y=Mid.Career, color = "Mid-career Salary"),
+    size = 0.8) +
+  labs(
+    title="Changes in Sarting Salary and Mid-career Salary", 
+    x="Major_code",
+    y="Salary") +
+  theme_minimal() + 
+  theme(plot.title = element_text(hjust = 0.5))+
+  theme(
+  plot.title = element_text(color="Black", size=12, face="bold"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold"))
+```
+
+```{r warning=FALSE, message=FALSE}
+ChanginginSalary <- t.test(MajorData$Starting , MajorData$Mid.Career)
+broom::tidy(ChanginginSalary)
+```
+
+This is the line graph representing the changes in the starting salary and the mid-career salary
+From this graph, it seems like there is a significant change from the starting salary to the mid-career salary. To test this claim, we conduct a Two-Sample t-test with the null hypothesis is there is no significant difference between the starting salary and the mid-career salary and the null hypothesis is there is significant difference between the starting salary and the mid-career salary.
+
+The p-value of the test is 1.122946e-18, which is less than the significance level alpha = 0.05. It indicates strong evidence against the null hypothesis, as there is less than a 5% probability the null is correct (and the results are random). Therefore, we reject the null hypothesis with f statistic is -11.5775	and conclude that  there is significant difference between the starting salary and the mid-career salary.
+
+## Salary by Degree Level
+```{r warning=FALSE, message=FALSE}
+GradData <- GradData %>% mutate(Difference = Graduate - Nongraduate)
+ggplot(data=GradData, aes(x=Difference)) +
+    geom_histogram(color="darkblue", fill="steelblue")+
+    labs(title="                               Histogram of the difference income between Degree level",x ="Salary")+
+  theme(
+  plot.title = element_text(color="Black", size=12, face="bold"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold"))
+```
+
+According to Terri Williams in [Graduate Degree Holders Make $17,000 More Per Year Than Bachelor’s Degree Holders](https://www.goodcall.com/news/how-much-more-can-you-make-with-a-masters-degree-01529/), Graduate Degree Holders make $17,000 more per year than Bachelor’s Degree Holders. The histogram seems to support this statement when it is a right-skewed distribution with a high concentration around the value 17000. We will test this statement with our data using one-sample t-test to see whether it is true or not. 
+
+```{r warning=FALSE, message=FALSE}
+GradSalary <- t.test(GradData$Difference , mu = 17000)
+broom::tidy(GradSalary)
+```
+
+The null hypothesis: H0: µ = 17000 (the difference between holding graduate degree and not is 17000) The alternative hypothesis H1: µ ≠ 17000 (the difference between holding graduate degree and not is not 17000)
+
+The p-value of the test is 0.1226497, which is larger than the significance level alpha = 0.05. We cannot reject our null hypothesis. Therefore, we can conclude the data support the assumption that the difference between holding graduate degree and not is 17000.
+
+#  Relationship between the number of students and the meadian starting salary
+```{r warning=FALSE, message=FALSE}
+ggplot(FocalData, aes(x=Total, y=Median)) + 
+  geom_point(na.rm = TRUE) + 
+  geom_smooth(method="lm", linetype=1, na.rm = TRUE) + 
+  labs(title = "    Relationship between the number of students and the meadian starting salary", x = "Number of students", y = "Salary")+
+  theme(
+  plot.title = element_text(color="Black", size=12, face="bold"),
+axis.title.x = element_text(color="black", size=12, face="bold"),
+axis.title.y = element_text(color="black", size=12, face="bold"))
+```
+
+```{r pressure, echo=FALSE}
+Cortest <-cor.test(FocalData$Total,FocalData$Median,method = "pearson")
+broom::tidy(Cortest)
+cor.test(FocalData$Total,FocalData$Median,method = "pearson")
+```
+
+This is the scatter plots with a line regression representing the relationship between the number of students in a major and its median starting salary. From the graph, it seems like there is no relationship between these two variables. We will conduct a correlation test to check this statement with the null hypothesis is the correlation between two variables is equal to 0 and the alternative hypothesis is true correlation is not equal to 0.
+
+The p-value of the test is 0.6565, which is much larger than the significance level alpha = 0.05. Therefore, we cannot reject our null hypothesis. We can conclude the data support the assumption that the correlation between two variables is equal to 0 with the true correlation is -0.03404997.
+
+# **Conclusions**
+
+The data and the analysis suggest that the starting salary of a student is influenced by many factors such as his or her majors, school types, regions, degree level The research also points out some most popular and least popular majors and some highest and lowest starting salary majors. However, there are some limitations in this data and the research. The world's need is always change and develop a new demand for students, such as when the Covid-19 came out, the medical students may be received more opportunities in their career path, therefore increasing their category's starting salary. Another limitations for this study is most of the data source is taken from the period 2010-2012, so it may lead to an inaccurate assumption for this day. In the future, the researchers should look for the most up-to-date data and carefully consider different independent variables that may influence students' salary.
+
+# **Work Cited**
+1.	Five Thirty Eight. “College Majors”. Retrieved from https://github.com/fivethirtyeight/data/tree/master/college-majors.
+2.	Ben Casselman. (September 12,2014). “The Economic Guide to picking a Colloege Major”. FiveThirtyEight. Retrieved from https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/.
+3.	Anthony P.Carnevale, Jeff Strohl, Michelle Melton. Georgetown University. “What’s it worth? The Economic Value of College Majors”. Retrieved from https://1gyhoq479ufd3yna29x7ubjn-wpengine.netdna-ssl.com/wp-content/uploads/2014/11/whatsitworth-complete.pdf.
+4.	The Wall Street Journal. “Salary Increase by Majors”. Retrieved from http://online.wsj.com/public/resources/documents/info-Degrees_that_Pay_you_Back-sort.html#top.
+5.	Jaison R. Abel and Richard Deitz. (September 02,2014). “The Value of a College Degree”. Liberty Street Economics. Retrieved from https://libertystreeteconomics.newyorkfed.org/2014/09/the-value-of-a-college-degree.html#.VA6Uh_mwLwk.
+
+
+
+
+
+
